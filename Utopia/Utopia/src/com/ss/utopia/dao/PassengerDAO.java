@@ -10,50 +10,54 @@ import com.ss.utopia.entity.Passenger;
 
 public class PassengerDAO extends BaseDAO<Passenger> {
 
-	//passenger columns
-	//id
-	//booking_id
-	//given_name
-	//family_name
-	//dob
-	//gender
-	//address
-	//seat_type
+	// passenger columns
+	// id
+	// booking_id
+	// given_name
+	// family_name
+	// dob
+	// gender
+	// address
+	// seat_type
 	public PassengerDAO(Connection connection) {
 		super(connection);
 		// TODO Auto-generated constructor stub
 	}
-	
-	public void add(Passenger passenger) throws ClassNotFoundException, SQLException{
+
+	public void add(Passenger passenger) throws ClassNotFoundException, SQLException {
 		save("insert into passenger(booking_id, given_name, family_name, dob, gender, address, seat_type) values(?,?,?,?,?,?,?)",
-				new Object[] {passenger.getBookingId(), passenger.getGivenName(),passenger.getFamilyName(), 
-						passenger.getDateOfBirth(), passenger.getGender(), passenger.getAddress(), passenger.getSeatType()});
+				new Object[] { passenger.getBookingId(), passenger.getGivenName(), passenger.getFamilyName(),
+						passenger.getDateOfBirth(), passenger.getGender(), passenger.getAddress(),
+						passenger.getSeatType() });
 	}
-	
-	public void update(Passenger passenger) throws ClassNotFoundException, SQLException{
+
+	public void update(Passenger passenger) throws ClassNotFoundException, SQLException {
 		save("update passenger set booking_id=?, given_name=?, family_name=?, dob=?, gender=?, address=?, seat_type=? where id=?",
-				new Object[] {passenger.getBookingId(), passenger.getGivenName(), passenger.getFamilyName(),
-						passenger.getDateOfBirth(), passenger.getGender(), passenger.getAddress(), passenger.getSeatType(), passenger.getId()});
+				new Object[] { passenger.getBookingId(), passenger.getGivenName(), passenger.getFamilyName(),
+						passenger.getDateOfBirth(), passenger.getGender(), passenger.getAddress(),
+						passenger.getSeatType(), passenger.getId() });
 	}
-	
-	public void delete(Passenger passenger) throws ClassNotFoundException, SQLException{
-		save("delete from passenger where id=?",
-				new Object[] {passenger.getId()});
+
+	public void delete(Passenger passenger) throws ClassNotFoundException, SQLException {
+		save("delete from passenger where id=?", new Object[] { passenger.getId() });
 	}
-	
-	public List<Passenger> readAll() throws ClassNotFoundException, SQLException{
+
+	public List<Passenger> readAll() throws ClassNotFoundException, SQLException {
 		return read("select * from passenger", new Object[] {});
 	}
-	
-	public Passenger readPassengerByBookingId(int id) throws ClassNotFoundException, SQLException{
-		return read("select * from passenger where booking_id=?", 
-				new Object[] {id}).get(0);
+
+	public Passenger readPassengerByBookingId(int id) throws ClassNotFoundException, SQLException {
+		return read("select * from passenger where booking_id=?", new Object[] { id }).get(0);
+	}
+
+	public Passenger readPassengerById(int id) throws ClassNotFoundException, SQLException {
+		return read("select * from passenger where id=?", new Object[] { id }).get(0);
 	}
 
 	@Override
 	public List<Passenger> extractData(ResultSet rs) throws ClassNotFoundException, SQLException {
 		List<Passenger> passengers = new ArrayList<Passenger>();
-		while(rs.next()) {
+		while (rs.next()) {
 			Passenger passenger = new Passenger();
 			passenger.setId(rs.getInt("id"));
 			passenger.setBookingId(rs.getInt("booking_id"));

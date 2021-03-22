@@ -30,15 +30,15 @@ public class FlightSeatsDAO extends BaseDAO<FlightSeats> {
 	}
 	
 	public void add(FlightSeats seats) throws ClassNotFoundException, SQLException {
-		save("insert into flight_seats values(?,?,?,?,?,?,?,?,?,?,?)",
-				new Object[] {seats.getId(), seats.getFlight().getId(), seats.getFirstTotal(),
+		save("insert into flight_seats(flight_id, first_total, first_reserved, first_price, business_total, business_reserved, business_price, economy_total, economy_reserved, economy_price) values(?,?,?,?,?,?,?,?,?,?)",
+				new Object[] {seats.getFlight().getId(), seats.getFirstTotal(),
 						seats.getFirstReserved(), seats.getFirstPrice(), seats.getBusinessTotal(), seats.getBusinessReserved(),
 						seats.getBusinessPrice(), seats.getEconomyTotal(), seats.getEconomyReserved(), seats.getEconomyPrice()});
 	}
 	
 	public void update(FlightSeats seats) throws ClassNotFoundException, SQLException {
 		save("update flight_seats set flight_id=?, first_total=?, first_reserved=?, first_price=?, business_total=?, business_reserved=?, business_price=?, economy_total=?, economy_reserved=?, economy_price=? where id=?",
-				new Object[] { seats.getFlight().getId(), seats.getFirstTotal(),
+				new Object[] { seats.getFlightId(), seats.getFirstTotal(),
 						seats.getFirstReserved(), seats.getFirstPrice(), seats.getBusinessTotal(), seats.getBusinessReserved(),
 						seats.getBusinessPrice(), seats.getEconomyTotal(), seats.getEconomyReserved(), seats.getEconomyPrice(), seats.getId()});
 	}
@@ -64,21 +64,19 @@ public class FlightSeatsDAO extends BaseDAO<FlightSeats> {
 		while(rs.next()) {
 			FlightSeats s = new FlightSeats();
 			s.setId(rs.getInt("id"));
-			
-			//Flight flight = new FlightDAO(connection).readFlightsById(rs.getInt("flight_id"));
-			//s.setFlight(flight);
+			s.setFlightId(rs.getInt("flight_id"));
 			
 			s.setFirstTotal(rs.getInt("first_total"));
 			s.setFirstReserved(rs.getInt("first_reserved"));
-			s.setFirstPrice(rs.getInt("first_price"));
+			s.setFirstPrice(rs.getFloat("first_price"));
 			
 			s.setBusinessTotal(rs.getInt("business_total"));
 			s.setBusinessReserved(rs.getInt("business_reserved"));
-			s.setBusinessPrice(rs.getInt("business_price"));
+			s.setBusinessPrice(rs.getFloat("business_price"));
 			
 			s.setEconomyTotal(rs.getInt("economy_total"));
 			s.setEconomyReserved(rs.getInt("economy_reserved"));
-			s.setEconomyPrice(rs.getInt("economy_price"));
+			s.setEconomyPrice(rs.getFloat("economy_price"));
 			seats.add(s);
 		}
 		return seats;

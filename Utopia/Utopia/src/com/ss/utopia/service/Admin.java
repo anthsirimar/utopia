@@ -13,6 +13,7 @@ import com.ss.utopia.entity.Airport;
 import com.ss.utopia.entity.Flight;
 import com.ss.utopia.entity.FlightSeats;
 import com.ss.utopia.entity.Passenger;
+import com.ss.utopia.entity.Route;
 import com.ss.utopia.entity.User;
 
 public class Admin {
@@ -21,12 +22,14 @@ public class Admin {
 		Connection connection = new Util().getConnection();
 		new AirportDAO(connection).add(airport);
 		connection.commit();
+		connection.close();
 	}
 	
 	public void updateAirport(Airport airport) throws ClassNotFoundException, SQLException{
 		Connection connection = new Util().getConnection();
 		new AirportDAO(connection).update(airport);
 		connection.commit();
+		connection.close();
 	}
 	
 	public void deleteAirport(Airport airport) throws ClassNotFoundException, SQLException {
@@ -35,6 +38,7 @@ public class Admin {
 		new AirportDAO(connection).delete(airport);
 		
 		connection.commit();
+		connection.close();
 	}
 
 	public void updateFlightSeats(FlightSeats seats) throws SQLException, ClassNotFoundException {
@@ -42,6 +46,7 @@ public class Admin {
 
 		new FlightSeatsDAO(connection).update(seats);
 		connection.commit();
+		connection.close();
 	}
 
 	public void updateFlight(Flight flight) throws ClassNotFoundException, SQLException {
@@ -51,6 +56,26 @@ public class Admin {
 		new RouteDAO(connection).update(flight.getRoute());
 
 		connection.commit();
+		connection.close();
+	}
+	
+	public void addFlight(Flight flight) throws ClassNotFoundException, SQLException {
+		Connection connection = new Util().getConnection();
+		RouteDAO routeDAO = new RouteDAO(connection);
+		routeDAO.add(flight.getRoute());
+		Route newRoute =routeDAO.readRouteByAirportCodes(flight.getRoute().getOriginAirport().getAirportCode(), flight.getRoute().getDestinationAirport().getAirportCode());
+		
+		flight.setRouteId(newRoute.getId());
+		
+		FlightDAO flightDAO = new FlightDAO(connection);
+		flightDAO.add(flight);
+		
+		flight.getSeats().setFlightId(flight.getId());
+		
+		new FlightSeatsDAO(connection).add(flight.getSeats());
+
+		connection.commit();
+		connection.close();
 	}
 
 	public void addPassenger(Passenger passenger, Flight flight) throws ClassNotFoundException, SQLException {
@@ -68,6 +93,14 @@ public class Admin {
 		new FlightDAO(connection).update(flight);
 
 		connection.commit();
+		connection.close();
+	}
+	
+	public void updatePassenger(Passenger passenger) throws ClassNotFoundException, SQLException {
+		Connection connection = new Util().getConnection();
+		new PassengerDAO(connection).update(passenger);
+		connection.commit();
+		connection.close();
 	}
 
 	public void removePassenger(Passenger passenger, Flight flight) throws ClassNotFoundException, SQLException {
@@ -85,6 +118,7 @@ public class Admin {
 		new FlightDAO(connection).update(flight);
 
 		connection.commit();
+		connection.close();
 	}
 	
 	public void addUser(User user) throws ClassNotFoundException, SQLException {
@@ -92,6 +126,7 @@ public class Admin {
 		new UserDAO(connection).add(user);
 		
 		connection.commit();
+		connection.close();
 	}
 	
 	public void updateUser(User user) throws ClassNotFoundException, SQLException {
@@ -99,12 +134,14 @@ public class Admin {
 		new UserDAO(connection).update(user);
 		
 		connection.commit();
+		connection.close();
 	}
 	
 	public void deleteUser(User user) throws ClassNotFoundException, SQLException {
 		Connection connection = new Util().getConnection();
 		new UserDAO(connection).delete(user);
 		
-		connection.commit();	
+		connection.commit();
+		connection.close();
 	}
 }

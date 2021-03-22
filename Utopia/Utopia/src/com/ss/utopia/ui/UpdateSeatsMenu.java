@@ -27,21 +27,24 @@ public class UpdateSeatsMenu extends Menu {
 		
 		case 1:
 			//First class
-			System.out.println("Existing number of reserved seats: " + seats.getFirstReserved());
-			seats.setFirstReserved(this.getUserInput());
+			System.out.println("Existing number of total first class seats: " + seats.getFirstTotal());
+			seats.setFirstTotal(this.getUserInput());
 			new Admin().updateFlightSeats(seats);
+			System.out.println("Seats info updated successfully");
 			return this.previousMenu;
 		case 2:
 			//Business class
-			System.out.println("Existing number of reserved seats: " + seats.getBusinessReserved());
-			seats.setBusinessReserved(this.getUserInput());
+			System.out.println("Existing number of total business seats: " + seats.getBusinessTotal());
+			seats.setBusinessTotal(this.getUserInput());
 			new Admin().updateFlightSeats(seats);
+			System.out.println("Seats info updated successfully");
 			return this.previousMenu;
 		case 3:
 			//Economy class
-			System.out.println("Existing number of reserved seats: " + seats.getEconomyReserved());
-			seats.setEconomyReserved(this.getUserInput());
+			System.out.println("Existing number of total economy class seats: " + seats.getEconomyTotal());
+			seats.setEconomyTotal(this.getUserInput());
 			new Admin().updateFlightSeats(seats);
+			System.out.println("Seats info updated successfully");
 			return this.previousMenu;
 		case 4:
 			//Quit

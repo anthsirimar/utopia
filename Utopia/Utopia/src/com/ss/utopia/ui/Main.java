@@ -1,5 +1,6 @@
 package com.ss.utopia.ui;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
@@ -16,7 +17,13 @@ public class Main {
 				scanner = new Scanner(System.in);
 				userInput = scanner.nextInt();
 				currentMenu = currentMenu.pickMenuOption(userInput);
-			} catch (Exception e) {
+			} catch(SQLException e) {
+				e.printStackTrace();
+				System.out.println("Something went wrong with trying to access the database.");
+			}
+			
+			catch (Exception e) {
+				e.printStackTrace();
 				System.out.println("Please enter a valid input");
 			}
 

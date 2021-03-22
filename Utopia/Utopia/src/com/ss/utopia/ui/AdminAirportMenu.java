@@ -40,6 +40,7 @@ public class AdminAirportMenu extends Menu {
 		}
 	}
 
+	@SuppressWarnings("resource")
 	private void updateAirport() throws ClassNotFoundException, SQLException {
 		Airport airport = new Airport();
 		Scanner scanner = new Scanner(System.in);
@@ -51,6 +52,7 @@ public class AdminAirportMenu extends Menu {
 		System.out.println("Successfully updated: " + airport);
 	}
 	
+	@SuppressWarnings("resource")
 	private void deleteAirport() throws ClassNotFoundException, SQLException {
 		Airport airport = new Airport();
 		Scanner scanner = new Scanner(System.in);
@@ -60,6 +62,7 @@ public class AdminAirportMenu extends Menu {
 		System.out.println("Successfully deleted: " + airport.getAirportCode());
 	}
 
+	@SuppressWarnings("resource")
 	private void addAirport() throws ClassNotFoundException, SQLException {
 		Airport airport = new Airport();
 		Scanner scanner = new Scanner(System.in);

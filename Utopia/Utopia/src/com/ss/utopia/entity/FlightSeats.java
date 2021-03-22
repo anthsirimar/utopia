@@ -2,16 +2,17 @@ package com.ss.utopia.entity;
 
 public class FlightSeats {
 	private int id;
+	private int flightId;
 	private Flight flight = new Flight();
 	private int firstTotal;
 	private int firstReserved;
-	private int firstPrice;
+	private float firstPrice;
 	private int businessTotal;
 	private int businessReserved;
-	private int businessPrice;
+	private float businessPrice;
 	private int economyTotal;
 	private int economyReserved;
-	private int economyPrice;
+	private float economyPrice;
 	
 	
 	public int getId() {
@@ -38,10 +39,10 @@ public class FlightSeats {
 	public void setFirstReserved(int firstReserved) {
 		this.firstReserved = firstReserved;
 	}
-	public int getFirstPrice() {
+	public float getFirstPrice() {
 		return firstPrice;
 	}
-	public void setFirstPrice(int firstPrice) {
+	public void setFirstPrice(float firstPrice) {
 		this.firstPrice = firstPrice;
 	}
 	public int getBusinessTotal() {
@@ -56,10 +57,10 @@ public class FlightSeats {
 	public void setBusinessReserved(int businessReserved) {
 		this.businessReserved = businessReserved;
 	}
-	public int getBusinessPrice() {
+	public float getBusinessPrice() {
 		return businessPrice;
 	}
-	public void setBusinessPrice(int businessPrice) {
+	public void setBusinessPrice(float businessPrice) {
 		this.businessPrice = businessPrice;
 	}
 	public int getEconomyTotal() {
@@ -75,14 +76,20 @@ public class FlightSeats {
 	public void setEconomyReserved(int economyReerved) {
 		this.economyReserved = economyReerved;
 	}
-	public int getEconomyPrice() {
+	public float getEconomyPrice() {
 		return economyPrice;
 	}
-	public void setEconomyPrice(int economyPrice) {
+	public void setEconomyPrice(float economyPrice) {
 		this.economyPrice = economyPrice;
 	}
 	
 	
+	public int getFlightId() {
+		return flightId;
+	}
+	public void setFlightId(int flightId) {
+		this.flightId = flightId;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -105,7 +112,7 @@ public class FlightSeats {
 	}
 	@Override
 	public String toString() {
-		return "FlightSeats [id=" + id + ", firstTotal=" + firstTotal + ", firstReserved=" + firstReserved
+		return "FlightSeats [id=" + id + ", flightId=" + flightId + ", firstTotal=" + firstTotal + ", firstReserved=" + firstReserved
 				+ ", firstPrice=" + firstPrice + ", businessTotal=" + businessTotal + ", businessReserved="
 				+ businessReserved + ", businessPrice=" + businessPrice + ", economyTotal=" + economyTotal
 				+ ", economyReserved=" + economyReserved + ", economyPrice=" + economyPrice + "]";

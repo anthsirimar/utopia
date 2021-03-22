@@ -40,6 +40,7 @@ public class AdminUserMenu extends Menu {
 		}
 	}
 
+	@SuppressWarnings("resource")
 	private void addUser() throws ClassNotFoundException, SQLException {
 		User user = new User();
 		Scanner scanner = new Scanner(System.in);
@@ -62,6 +63,7 @@ public class AdminUserMenu extends Menu {
 		System.out.println("User created successfully");
 	}
 
+	@SuppressWarnings("resource")
 	private void updateUser() throws ClassNotFoundException, SQLException {
 		User user;
 		UserDAO dao = new UserDAO(new Util().getConnection());
@@ -109,6 +111,7 @@ public class AdminUserMenu extends Menu {
 		System.out.println("User updated successfully");
 	}
 
+	@SuppressWarnings("resource")
 	private void deleteUser() throws ClassNotFoundException, SQLException {
 		User user;
 		UserDAO dao = new UserDAO(new Util().getConnection());
