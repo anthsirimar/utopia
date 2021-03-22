@@ -51,6 +51,11 @@ public class Route {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Route [id=" + id + ", originAirport=" + originAirport + ", destinationAirport=" + destinationAirport
+				+ "]";
+	}
 	
 
 

@@ -1,5 +1,6 @@
 package com.ss.utopia.ui;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,11 +15,13 @@ public class EmployeeMenu extends Menu {
 	}
 
 	@Override
-	public Menu pickMenuOption(int choice) {
+	public Menu pickMenuOption(int choice) throws ClassNotFoundException, SQLException {
 		switch (choice) {
 		case 1:
 			// Go to flights menu
-			return buildFlightsMenu();
+			FlightsListMenu menu = new FlightsListMenu();
+			menu.setPreviousMenu(this);
+			return menu;
 		case 2:
 			// Return to previous
 			return this.getPreviousMenu();
@@ -27,13 +30,6 @@ public class EmployeeMenu extends Menu {
 			System.out.println("Please enter a valid input");
 			return this;
 		}
-	}
-
-	private Menu buildFlightsMenu() {
-		FlightsListMenu menu = new FlightsListMenu();
-		menu.setPreviousMenu(this);
-
-		return menu;
 	}
 
 }

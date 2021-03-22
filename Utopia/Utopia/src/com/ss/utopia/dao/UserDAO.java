@@ -25,8 +25,8 @@ public class UserDAO extends BaseDAO<User> {
 	}
 	
 	public void add(User user) throws ClassNotFoundException, SQLException{
-		save("insert into user values(?,?,?,?,?,?,?,?)",
-				new Object[] {user.getId(), user.getRoleId(), user.getGivenName(), user.getFamilyName(),user.getUsername(),
+		save("insert into user(role_id, given_name, family_name, username, email, password, phone) values(?,?,?,?,?,?,?)",
+				new Object[] {user.getRoleId(), user.getGivenName(), user.getFamilyName(),user.getUsername(),
 						user.getEmail(), user.getPassword(), user.getPhone()});
 	}
 	
@@ -43,6 +43,11 @@ public class UserDAO extends BaseDAO<User> {
 	
 	public List<User> readAll() throws ClassNotFoundException, SQLException{
 		return read("select * from user", new Object[] {});
+	}
+	
+	public User readUsersById(int id) throws ClassNotFoundException, SQLException{
+		return read("select * from user where id=?",
+				new Object[] {id}).get(0);
 	}
 
 	@Override

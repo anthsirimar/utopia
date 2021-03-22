@@ -1,12 +1,11 @@
 package com.ss.utopia.entity;
 
-import java.util.List;
 
 public class Airport {
 
 	private String airportCode;
 	private String city;
-	private List<Route> routes;
+
 	
 	public String getAirportCode() {
 		return airportCode;
@@ -19,12 +18,6 @@ public class Airport {
 	}
 	public void setCity(String city) {
 		this.city = city;
-	}
-	public List<Route> getRoutes() {
-		return routes;
-	}
-	public void setRoutes(List<Route> routes) {
-		this.routes = routes;
 	}
 	
 	
@@ -50,5 +43,9 @@ public class Airport {
 		} else if (!airportCode.equals(other.airportCode))
 			return false;
 		return true;
+	}
+	@Override
+	public String toString() {
+		return "Airport [airportCode=" + airportCode + ", city=" + city + "]";
 	}
 }

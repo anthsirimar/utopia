@@ -33,6 +33,11 @@ public class BookingDAO extends BaseDAO<Booking> {
 	public List<Booking> readAll() throws ClassNotFoundException, SQLException {
 		return read("select * from booking", new Object[] {});
 	}
+	
+	public List<Booking> readBookingByConfirmationCode(String code) throws ClassNotFoundException, SQLException {
+		return read("select * from booking where confirmation_code=?",
+				new Object[] {code});
+	}
 
 	@Override
 	public List<Booking> extractData(ResultSet rs) throws ClassNotFoundException, SQLException {

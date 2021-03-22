@@ -1,12 +1,13 @@
 package com.ss.utopia.ui;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public abstract class Menu {
 
-	protected String menuDescription;
+	protected String menuDescription = "";
 	protected List<String> menuOptions = new ArrayList<String>();
 	protected Menu previousMenu = null;
 	protected String cancelMessage;
@@ -50,7 +51,7 @@ public abstract class Menu {
 	
 //---------------------------
 	
-	public abstract Menu pickMenuOption (int choice);
+	public abstract Menu pickMenuOption (int choice) throws ClassNotFoundException, SQLException;
 	
 	public void printMenu() {
 		System.out.println(menuDescription);

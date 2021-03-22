@@ -22,8 +22,10 @@ public abstract class BaseDAO<T> {
 			statement.setObject(i, val);
 			i++;
 		}
+		//System.out.println(statement.toString());
 		statement.executeUpdate();
-		ResultSet rs = statement.executeQuery();
+		ResultSet rs = statement.getGeneratedKeys();
+		//ResultSet rs = statement.executeQuery();
 		while (rs.next()) {
 			return rs.getInt(1);
 		}

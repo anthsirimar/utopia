@@ -81,4 +81,9 @@ public class User {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", roleId=" + roleId + ", givenName=" + givenName + ", familyName=" + familyName
+				+ ", username=" + username + ", email=" + email + ", password=" + password + ", phone=" + phone + "]";
+	}
 }

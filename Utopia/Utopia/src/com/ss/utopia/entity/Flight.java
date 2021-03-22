@@ -8,10 +8,9 @@ public class Flight {
 	
 	private int airplaneId;
 	private String departureTime;
-	private int reservedSeats;
-	private float seatPrice;
+	private String arrivalTime;
 	
-	
+	private FlightSeats seats;
 	
 	public int getId() {
 		return id;
@@ -19,6 +18,13 @@ public class Flight {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public Route getRoute() {
+		return route;
+	}
+	public void setRoute(Route route) {
+		this.route = route;
+	}
+	
 	public int getRouteId() {
 		return routeId;
 	}
@@ -37,19 +43,21 @@ public class Flight {
 	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
 	}
-	public int getReservedSeats() {
-		return reservedSeats;
+	
+	public String getArrivalTime() {
+		return arrivalTime;
 	}
-	public void setReservedSeats(int reservedSeats) {
-		this.reservedSeats = reservedSeats;
-	}
-	public float getSeatPrice() {
-		return seatPrice;
-	}
-	public void setSeatPrice(float seatPrice) {
-		this.seatPrice = seatPrice;
+	public void setArrivalTime(String arrivalTime) {
+		this.arrivalTime = arrivalTime;
 	}
 	
+	public void setSeats(FlightSeats seats) {
+		this.seats = seats;
+	}
+	
+	public FlightSeats getSeats() {
+		return seats;
+	}
 	
 	@Override
 	public int hashCode() {
@@ -70,5 +78,25 @@ public class Flight {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+	
+	
+	public String departureDate() {
+		return departureTime.split(" ")[0];
+	}
+	public String departureTime() {
+		return departureTime.split(" ")[1];
+	}
+	
+	public String arrivalDate() {
+		return arrivalTime.split(" ")[0];
+	}
+	public String arrivalTime() {
+		return arrivalTime.split(" ")[1];
+	}
+	@Override
+	public String toString() {
+		return "Flight [id=" + id + ", routeId=" + routeId + ", route=" + route + ", airplaneId=" + airplaneId
+				+ ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime + ", seats=" + seats + "]";
 	}
 }
